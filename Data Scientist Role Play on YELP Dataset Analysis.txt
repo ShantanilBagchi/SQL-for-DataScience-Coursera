@@ -337,7 +337,7 @@ Part 2: Inferences and Analysis
 1. Pick one city and category of your choice and group the businesses in that city or category by their overall star rating. Compare the businesses with 2-3 stars to the businesses with 4-5 stars and answer the following questions. Include your code.
 
 
-I have chosen city as Las Vegas as it had 193 reviews and subsequently chose Shopping as there were 4 businesses which was the highest among all the categories along with Health & Medical and Restaurants.
+I have chosen city as Las Vegas as it had 82854 reviews and subsequently chose Shopping as there were 4 businesses which was the highest among all the categories along with Health & Medical and Restaurants.
 	
 
 i. Do the two groups you chose to analyze have a different distribution of hours?
@@ -413,7 +413,7 @@ i. Difference 1:
          The businesses that are open tend to have more reviews than ones that are closed on average.
 		
 			Open:   AVG(review_count) = 31.757
-			Closed: AVG(review_count0 = 23.198
+			Closed: AVG(review_count) = 23.198
          
 ii. Difference 2:
          The average star rating is higher for businesses that are open than businesses that are closed.
