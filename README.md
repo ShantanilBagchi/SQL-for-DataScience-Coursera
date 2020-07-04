@@ -1,6 +1,6 @@
 # SQL for DataScience
 
-Notes, annotations, and my implementations from Coursera's SQL for Data Science course: https://www.coursera.org/learn/sql-for-data-science
+My implementations and some notes for reference from Coursera's SQL for Data Science course.
 
 **Table of Contents**
 
