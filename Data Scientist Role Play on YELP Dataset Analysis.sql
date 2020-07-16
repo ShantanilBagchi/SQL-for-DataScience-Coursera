@@ -12,7 +12,7 @@
 -- Part 1: Yelp Dataset Profiling and Understanding
 
 -- 1. Profile the data by finding the total number of records for each of the tables below:
-	
+
 -- i. Attribute table = 10000 rows
 -- ii. Business table = 10000 rows
 -- iii. Category table = 10000 rows
@@ -24,40 +24,40 @@
 -- ix. review table = 10000 rows
 -- x. tip table = 10000 rows
 -- xi. user table = 10000 rows
-	
+
 
 
 -- 2. Find the total distinct records by either the foreign key or primary key for each table. If two foreign keys are listed in the table, please specify which foreign key.
 
--- i. Business = 10000 distinct records for primary key ‘id’ of Business table 
+-- i. Business = 10000 distinct records for primary key ‘id’ of Business table
 -- ii. Hours = 1562 distinct records for foreign key ‘business_id’
 -- iii. Category = 2643 distinct records for foreign key ‘business_id’
 -- iv. Attribute = 1115 distinct records for foreign key ‘id’
 -- v. Review = 10000 distinct records for primary key ‘id’, 9581 user_id foreign key, 8090 business_id foreign key
 -- vi. Checkin = 493 distinct records for foreign key ‘buisness_id’
--- vii. Photo = 10000 distinct records for primary key ‘id’, 6493 buisness_id foreign key 
+-- vii. Photo = 10000 distinct records for primary key ‘id’, 6493 buisness_id foreign key
 -- viii. Tip = 537 distinct records for foreign key ‘user_id’, 3979 buisness_id foreign key
 -- ix. User = 10000 distinct records for primary key ‘id’
--- x. Friend = 11 distinct records for foreign key ‘user_id’ 
--- xi. Elite_years = 2780 distinct records for foreign key ‘user id’ 
+-- x. Friend = 11 distinct records for foreign key ‘user_id’
+-- xi. Elite_years = 2780 distinct records for foreign key ‘user id’
 
--- Note: Primary Keys are denoted in the ER-Diagram with a yellow key icon.	
+-- Note: Primary Keys are denoted in the ER-Diagram with a yellow key icon.
 
 
 
 -- 3. Are there any columns with null values in the Users table? Indicate "yes," or "no."
 
 -- 	Answer: NO
-	
-	
+
+
 -- 	SQL code used to arrive at answer:
 
 SELECT *
 
 FROM user
 
-WHERE 
-      id IS NULL OR 
+WHERE
+      id IS NULL OR
       name IS NULL OR
       review_count IS NULL OR
       yelping_since IS NULL OR
@@ -76,53 +76,53 @@ WHERE
       compliment_cool IS NULL OR
       compliment_funny IS NULL OR
       compliment_writer IS NULL OR
-      compliment_photos IS NULL 
-	
-	
+      compliment_photos IS NULL
 
-	
+
+
+
 -- 4. For each table and column listed below, display the smallest (minimum), largest (maximum), and average (mean) value for the following fields:
 
 -- 	i. Table: Review, Column: Stars
-	
+
 -- 		min:	1	max:	5	avg:	3.7082
-		
-	
+
+
 -- 	ii. Table: Business, Column: Stars
-	
+
 -- 		min:	1	max:	5	avg:	3.6549
-		
-	
+
+
 -- 	iii. Table: Tip, Column: Likes
-	
+
 -- 		min:	0	max:	2	avg: 0.0144
-		
-	
+
+
 -- 	iv. Table: Checkin, Column: Count
-	
+
 -- 		min:	1	max:	53	avg:	1.9414
-		
-	
+
+
 -- 	v. Table: User, Column: Review_count
-	
+
 -- 		min:	0	max:	2000	avg:	24.2995
-		
+
 
 
 -- 5. List the cities with the most reviews in descending order:
 
 -- 	SQL code used to arrive at answer:
 
-SELECT 
+SELECT
 	city,
 	SUM(review_count) AS reviews
 
 FROM business
 
 GROUP BY city
-ORDER BY reviews DESC 
-	
-	
+ORDER BY reviews DESC
+
+
 	Copy and Paste the Result Below:
 +-----------------+---------+
 | city            | reviews |
@@ -152,21 +152,21 @@ ORDER BY reviews DESC
 | Surprise        |    1520 |
 | Lakewood        |    1465 |
 | Goodyear        |    1155 |
-+-----------------+---------+ 
-(Output limit exceeded, 25 of 362 total rows shown)	
++-----------------+---------+
+(Output limit exceeded, 25 of 362 total rows shown)
 
-	
+
 -- 6. Find the distribution of star ratings to the business in the following cities:
 
 -- i. Avon
 
 -- SQL code used to arrive at answer:
 
-SELECT 
+SELECT
 	stars,
 	count(stars) as num_count
 
-FROM business 
+FROM business
 
 WHERE city = ‘Avon'
 GROUP BY stars
@@ -182,21 +182,21 @@ GROUP BY stars
 |   4.0 |   2 |
 |   4.5 |   1 |
 |   5.0 |   1 |
-+-------+-----+ 
++-------+-----+
 
 
 -- ii. Beachwood
 
 -- SQL code used to arrive at answer:
 
-SELECT 
+SELECT
 	stars,
 	count(stars) as num_count
 
-FROM business 
+FROM business
 
 WHERE city = ‘Beachwood'
-GROUP BY stars 
+GROUP BY stars
 
 
 -- Copy and Paste the Resulting Table Below (2 columns – star rating and count):
@@ -211,26 +211,26 @@ GROUP BY stars
 |   4.0 |   1 |
 |   4.5 |   2 |
 |   5.0 |   5 |
-+-------+-----+ 
-		
++-------+-----+
+
 
 
 -- 7. Find the top 3 users based on their total number of reviews:
-		
+
 -- 	SQL code used to arrive at answer:
 
-SELECT 
+SELECT
 	id,
 	name,
 	review_count
 
 FROM user
 
-ORDER BY review_count DESC 
-LIMIT 3		
-	
+ORDER BY review_count DESC
+LIMIT 3
+
 --Copy and Paste the Result Below:
-		
+
 +------------------------+--------+--------------+
 | id                     | name   | review_count |
 +------------------------+--------+--------------+
@@ -243,10 +243,10 @@ LIMIT 3
 
 -- 	Please explain your findings and interpretation of the results:
 
--- As can be seen from the snippet of the review_count and fans table below, having a high review_count doesn’t have a correlation to more fans. In my opinion, it has more to do with the quality of the review the user has given, the length of time one is yelping and whether its useful for the community or not. 
--- I couldn’t analyze this intuition further as it seems that for the top names in this list, associated reviews are not present in the review table. It seems being a long time on yelp also doesn’t have a proper correlation to the number of fans. I used the following code to search for reviews and yelping_since for the top users. 
+-- As can be seen from the snippet of the review_count and fans table below, having a high review_count doesn’t have a correlation to more fans. In my opinion, it has more to do with the quality of the review the user has given, the length of time one is yelping and whether its useful for the community or not.
+-- I couldn’t analyze this intuition further as it seems that for the top names in this list, associated reviews are not present in the review table. It seems being a long time on yelp also doesn’t have a proper correlation to the number of fans. I used the following code to search for reviews and yelping_since for the top users.
 
-SELECT 
+SELECT
 	name,
 	review_count,
 	fans,
@@ -257,7 +257,7 @@ FROM user LEFT JOIN review
 ON user.id=review.user_id
 
 ORDER BY review_count DESC
-LIMIT 10 
+LIMIT 10
 
 +-----------+--------------+------+---------------------+------+
 | name      | review_count | fans | yelping_since       | text |
@@ -272,36 +272,36 @@ LIMIT 10
 | Roanna    |         1039 |  104 | 2006-03-28 00:00:00 | None |
 | Mimi      |          968 |  497 | 2011-03-30 00:00:00 | None |
 | Christine |          930 |  173 | 2009-07-08 00:00:00 | None |
-+-----------+--------------+------+---------------------+------+ 
-	
++-----------+--------------+------+---------------------+------+
 
-	
+
+
 -- 9. Are there more reviews with the word "love" or with the word "hate" in them?
 
 -- 	Answer: Love is contained in 1780 reviews whereas Hate is contained in only 232 reviews.
 
-	
+
 -- 	SQL code used to arrive at answer:
 
-SELECT 
+SELECT
 	COUNT(text)
 
 FROM review
-WHERE LOWER(text) LIKE '%hate%' 
+WHERE LOWER(text) LIKE '%hate%'
 
-SELECT 
+SELECT
 	COUNT(text)
 
 FROM review
-WHERE LOWER(text) LIKE '%love%' 
+WHERE LOWER(text) LIKE '%love%'
 
-	
-	
+
+
 -- 10. Find the top 10 users with the most fans:
 
 -- 	SQL code used to arrive at answer:
 
-SELECT 
+SELECT
 	user.id,
 	name,
 	fans
@@ -311,8 +311,8 @@ FROM user
 ORDER BY fans DESC
 LIMIT 10
 
-	
-	
+
+
 	Copy and Paste the Result Below:
 +------------------------+-----------+------+
 | id                     | name      | fans |
@@ -329,8 +329,8 @@ LIMIT 10
 | -lh59ko3dxChBSZ9U7LfUw | Lissa     |  120 |
 +------------------------+-----------+------+
 
-	
-		
+
+
 
 -- Part 2: Inferences and Analysis
 
@@ -338,7 +338,7 @@ LIMIT 10
 
 
 -- I have chosen city as Las Vegas as it had 82854 reviews and subsequently chose Shopping as there were 4 businesses which was the highest among all the categories along with Health & Medical and Restaurants.
-	
+
 
 -- i. Do the two groups you chose to analyze have a different distribution of hours?
 
@@ -348,8 +348,8 @@ LIMIT 10
 -- ii. Do the two groups you chose to analyze have a different number of reviews?
 
 -- Comparing the reviews of the businesses, Walgreens has just 6 reviews whereas the 4-5-star businesses have 4 and 32 reviews respectively. It seems the one with 32 reviews i.e. Red Rock Canyon Visitor Centre is quite liked by the residents with 4.5-star rating.
-         
-         
+
+
 -- iii. Are you able to infer anything from the location data provided between these two groups? Explain.
 
 -- The location and neighborhood don’t provide sufficient details to reach any major conclusion. All the different businesses have different postal code and neighborhood. So, due to not having sufficient data, no concrete conclusion can be reached on the correlation between star rating and location detail.
@@ -358,26 +358,26 @@ LIMIT 10
 
 -- SQL code used for analysis:
 
-SELECT        
+SELECT
        CASE
        WHEN stars>=4 THEN '4-5 Stars'
        WHEN (stars>=2 AND stars<=3) THEN '2-3 Stars'
        END as rating,
-       
+
        postal_code,
        review_count,
        hours.hours,
        name,
        neighborhood
-       
-       
+
+
 FROM business INNER JOIN category
      ON business.id=category.business_id
 
      INNER JOIN hours
      ON business.id=hours.business_id
-  
-WHERE city='Las Vegas' 
+
+WHERE city='Las Vegas'
       AND category = 'Shopping'
       AND (stars>=4 OR (stars <3 and stars>2))
 
@@ -405,54 +405,54 @@ ORDER BY stars DESC, hours DESC
 | 2-3 Stars | 89121       |            6 | Saturday|8:00-22:00  | Walgreens                      | Eastside     |
 | 2-3 Stars | 89121       |            6 | Monday|8:00-22:00    | Walgreens                      | Eastside     |
 | 2-3 Stars | 89121       |            6 | Friday|8:00-22:00    | Walgreens                      | Eastside     |
-+-----------+-------------+--------------+----------------------+--------------------------------+--------------+		
-		
++-----------+-------------+--------------+----------------------+--------------------------------+--------------+
+
 -- 2. Group business based on the ones that are open and the ones that are closed. What differences can you find between the ones that are still open and the ones that are closed? List at least two differences and the SQL code you used to arrive at your answer.
-		
+
 -- i. Difference 1:
 --          The businesses that are open tend to have more reviews than ones that are closed on average.
-		
+
 -- 			Open:   AVG(review_count) = 31.757
 -- 			Closed: AVG(review_count) = 23.198
-         
+
 -- ii. Difference 2:
 --          The average star rating is higher for businesses that are open than businesses that are closed.
-	
+
 -- 			Open:   AVG(stars) = 3.68
 -- 			Closed: AVG(stars) = 3.52
-         
-         
+
+
 -- SQL code used for analysis:
-SELECT 	
-	   	
+SELECT
+
 	COUNT(DISTINCT(id)) AS Number_of_business,
 	ROUND(AVG(review_count),2) AS avg_review,
 	SUM(review_count) AS total_review,
 	ROUND(AVG(stars),2) AS avg_rating,
 	is_open
-			   
+
 FROM business
 GROUP BY is_open
-	
+
 +--------------------+------------+--------------+------------+---------+
 | Number_of_business | avg_review | total_review | avg_rating | is_open |
 +--------------------+------------+--------------+------------+---------+
 |               1520 |       23.2 |        35261 |       3.52 |       0 |
 |               8480 |      31.76 |       269300 |       3.68 |       1 |
 +--------------------+------------+--------------+------------+---------+
-	
+
 -- 3. For this last part of your analysis, you are going to choose the type of analysis you want to conduct on the Yelp dataset and are going to prepare the data for analysis.
 
 -- Ideas for analysis include: Parsing out keywords and business attributes for sentiment analysis, clustering businesses to find commonalities or anomalies between them, predicting the overall star rating for a business, predicting the number of fans a user will have, and so on. These are just a few examples to get you started, so feel free to be creative and come up with your own problem you want to solve. Provide answers, in-line, to all of the following:
-	
+
 
 -- i. Indicate the type of analysis you chose to do:
 
--- Predicting the number of fans a user will have is an interesting problem to consider according to me.          
-         
+-- Predicting the number of fans a user will have is an interesting problem to consider according to me.
+
 
 -- ii. Write 1-2 brief paragraphs on the type of data you will need for your analysis and why you chose that data:
-                           
+
 -- After studying the ER diagram, there are a few points that came to mind that can be useful for predicting the number of fans a user will have like the number of useful reviews, years active on yelp, whether he/she is an elite member and for how long, compliments received from users etc. There could have been a lot of other analysis that could have been done based on other factors like the quality of the review made, review sentiment analysis, rating of the business for which the review was made etc. but I haven’t considered all these in the current analysis.
 
 -- So, I have tried to use the user table and the elite_years table for my analysis. The result of the analysis are as follows:
@@ -460,12 +460,12 @@ GROUP BY is_open
 -- 2) On an average, a user has been on yelp for 7 years.
 -- 3) Now for fan prediction, it seems on an average each review can count towards 0.033 fans i.e. on an average one can expect 1 fan for every 30 reviews posted
 -- 4) Other observations are, on an average, one can expect 1 fan for every 4 rating for usefulness given by users and on average 1 fan for every 5.5 rating for compliment given by users
-                 
+
 
 -- iii. Output of your finished dataset:
-     
--- Provided in the next part along with the code.    
-         
+
+-- Provided in the next part along with the code.
+
 
 -- iv. Provide the SQL code you used to create your final dataset:
 
