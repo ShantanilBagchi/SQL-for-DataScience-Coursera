@@ -83,7 +83,7 @@ Front-loading this work saves time later.
 ER (entity-relationship) diagrams are composed of entity types, and specify
 relationships between those entities.
 
-<img alt="simple ER diagram" src="../assets/week-1/er-diagram-simple.jpg" width="50%" />
+<img alt="simple ER diagram" src="assets/week-1/er-diagram-simple.jpg" width="50%" />
 
 They have the following functions:
 
@@ -92,7 +92,7 @@ They have the following functions:
 - are visual aids
 - show links through primary keys
 
-<img alt="detailed ER diagram" src="../assets/week-1/er-diagram-detailed.jpg" width="50%" />
+<img alt="detailed ER diagram" src="assets/week-1/er-diagram-detailed.jpg" width="50%" />
 
 ### Primary and foreign keys
 
@@ -105,7 +105,7 @@ other.
     - one or more columns that can be used together to identify a single row in
         another table
 
-<img alt="ER diagram with keys" src="../assets/week-1/er-diagram-keys.jpg" width="50%" />
+<img alt="ER diagram with keys" src="assets/week-1/er-diagram-keys.jpg" width="50%" />
 
 ### ER diagram notations
 
@@ -113,21 +113,21 @@ other.
 
 Uses `1` and `M` to signify relationships on entities:
 
-<img alt="chen notation" src="../assets/week-1/er-diagram-notation-chen.jpg" width="50%" />
+<img alt="chen notation" src="assets/week-1/er-diagram-notation-chen.jpg" width="50%" />
 
 #### Crow's foot notation
 
 - `--||-`: 1
 - `--|ᗕ`:  many
 
-<img alt="crow's foot notation" src="../assets/week-1/er-diagram-notation-crows-foot.jpg" width="50%" />
+<img alt="crow's foot notation" src="assets/week-1/er-diagram-notation-crows-foot.jpg" width="50%" />
 
 #### UML class diagram notation
 
 - 1.1: 1
 - 1.*: many
 
-<img alt="uml notation" src="../assets/week-1/er-diagram-notation-uml.jpg" width="50%" />
+<img alt="uml notation" src="assets/week-1/er-diagram-notation-uml.jpg" width="50%" />
 
 ## Retrieving Data with a SELECT Statement
 
